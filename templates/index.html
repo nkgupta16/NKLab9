@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <style>
+        body { background-color: #f4f4f9; }
+        .important { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Notes</h1>
+    <form action="/" method="post">
+        <input type="text" name="text" placeholder="Enter note here..." required>
+        <label>
+            <input type="checkbox" name="important"> Important
+        </label>
+        <button type="submit">Add Note</button>
+    </form>
+    <ul>
+        {% for note in notes %}
+            <li class="{{ 'important' if note.important else '' }}">{{ note.text }}</li>
+        {% endfor %}
+    </ul>
+    <form action="/clear" method="post">
+        <button type="submit">Clear All</button>
+    </form>
+</body>
+</html>
